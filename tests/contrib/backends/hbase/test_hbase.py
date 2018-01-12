@@ -71,7 +71,7 @@ class TestHBaseBackend(object):
 
     def test_state(self):
         connection = Connection(host='hbase-docker', port=9090)
-        state = HBaseState(connection, b'states', 300000)
+        state = HBaseState(connection, b'states', 300000, True)
         state.set_states([r1, r2, r3])
         assert [r.meta[b'state'] for r in [r1, r2, r3]] == [States.NOT_CRAWLED]*3
         state.update_cache([r1, r2, r3])
